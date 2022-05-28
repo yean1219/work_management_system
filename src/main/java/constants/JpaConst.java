@@ -70,15 +70,15 @@ public interface JpaConst {
     String Q_EMP_COUNT_RESISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
     //全ての日報をidの降順に取得する
     String Q_MAN_GET_ALL = ENTITY_MAN + ".getAll";
-    String Q_MAN_GET_ALL_DEF = "SELECT r FROM Management AS r ORDER BY r.id DESC";
+    String Q_MAN_GET_ALL_DEF = "SELECT m FROM Management AS m ORDER BY m.id DESC";
     //全ての日報の件数を取得する
     String Q_MAN_COUNT = ENTITY_MAN + ".count";
-    String Q_MAN_COUNT_DEF = "SELECT COUNT(r) FROM Management AS r";
+    String Q_MAN_COUNT_DEF = "SELECT COUNT(m) FROM Management AS m";
     //指定した従業員が作成した日報を全件idの降順で取得する
     String Q_MAN_GET_ALL_MINE = ENTITY_MAN + ".getAllMine";
-    String Q_MAN_GET_ALL_MINE_DEF = "SELECT r FROM Management AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY r.id DESC";
+    String Q_MAN_GET_ALL_MINE_DEF = "SELECT m FROM Management AS m WHERE m.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY m.id DESC";
     //指定した従業員が作成した日報の件数を取得する
     String Q_MAN_COUNT_ALL_MINE = ENTITY_MAN + ".countAllMine";
-    String Q_MAN_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Management AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+    String Q_MAN_COUNT_ALL_MINE_DEF = "SELECT COUNT(m) FROM Management AS m WHERE m.employee = :" + JPQL_PARM_EMPLOYEE;
 
 }
