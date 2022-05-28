@@ -128,3 +128,45 @@ select {
 h1 a {
     color: #eeeeee;
 }
+table#management_list th {
+    font-weight: bold;
+    padding: 10px 2%;
+}
+
+table#management_list .management_progess {
+    width: 25%;
+    padding: 10px 2%;
+}
+table#management_list .management_manager {
+    width: 20%;
+}
+table#management_list .management_projectnumber {
+    width: 40%;
+}
+
+table#management_list .management_client {
+    width: 40%;
+}
+
+
+table#management_list .management_quantity {
+    width: 20%;
+}
+table#management_list .management_requester {
+    width: 20%;
+}
+table#management_list .management_content {
+    width: 20%;
+}
+table#management_list .management_deadline {
+    width: 20%;
+}
+table#management_list .management_predict {
+    width: 40%;
+}
+table#management_list .management_help {
+    width: 20%;
+}
+table#management_list .report_action {
+    width: 20%;
+}

@@ -41,9 +41,15 @@ public enum AttributeConst {
     MANAGEMENTS("managements"),
     MAN_COUNT("managements_count"),
     MAN_ID("id"),
-    MAN_DATE("management_date"),
-    MAN_TITLE("title"),
-    MAN_CONTENT("content");
+    MAN_CONTENT("content"),
+    MAN_PROGESS("progess"),
+    MAN_PROJECTNUMBER("projectnumber"),
+    MAN_CLIENT("client"),
+    MAN_QUANTITY("quantity"),
+    MAN_REQUESTER("requester"),
+    MAN_DEADLINE("deadline"),
+    MAN_PREDICT("predict"),
+    MAN_HELP("help");
 
     private final String text;
     private final Integer i;
