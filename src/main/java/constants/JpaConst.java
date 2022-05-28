@@ -28,16 +28,27 @@ public interface JpaConst {
     String TABLE_MAN = "managements"; //テーブル名
     //日報テーブルカラム
     String MAN_COL_ID = "id"; //id
-    String MAN_COL_EMP = "employee_id"; //日報を作成した従業員のid
-    String MAN_COL_REP_DATE = "management_date"; //いつの日報かを示す日付
-    String MAN_COL_TITLE = "title"; //日報のタイトル
+    //String MAN_COL_EMP = "employee_id"; //日報を作成した従業員のid
+    String MAN_COL_PROGESS = "progess";
+    String MAN_COL_EMP_NAME = "employee_name";
+    String MAN_COL_PRO_NUM = "projectnumber";
+    String MAN_COL_CLI = "client";
+    String MAN_COL_QUA = "quantity";
+    String MAN_COL_REQ = "requester";
     String MAN_COL_CONTENT = "content"; //日報の内容
-    String MAN_COL_CREATED_AT = "created_at"; //登録日時
-    String MAN_COL_UPDATED_AT = "updated_at"; //更新日時
+    String MAN_COL_DEADLINE = "deadline";
+    String MAN_COL_PREDICT = "predict";
+    String MAN_COL_HELP = "help";
+    //String MAN_COL_MAN_DATE = "management_date"; //いつの日報かを示す日付
+    //String MAN_COL_TITLE = "title"; //日報のタイトル
+
+    //String MAN_COL_CREATED_AT = "created_at"; //登録日時
+    //String MAN_COL_UPDATED_AT = "updated_at"; //更新日時
+
 
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
-    String ENTITY_MAN = "management"; //日報
+    String ENTITY_MAN = "management"; //作業
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
