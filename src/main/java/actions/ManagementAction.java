@@ -2,6 +2,9 @@ package actions;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -64,6 +67,13 @@ public class ManagementAction extends ActionBase {
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
+            // 納期
+            Timestamp  deatLine = toTimestamp(getRequestParam(AttributeConst.MAN_DEADLINE));
+
+            // 予測完了時間
+            Timestamp  predict = toTimestamp(getRequestParam(AttributeConst.MAN_PREDICT));
+
+
             //パラメータの値をもとに日報情報のインスタンスを作成する
             ManagementView mv = new ManagementView(
                     null,
@@ -74,8 +84,8 @@ public class ManagementAction extends ActionBase {
                     getRequestParam(AttributeConst.MAN_QUANTITY),
                     getRequestParam(AttributeConst.MAN_REQUESTER),
                     getRequestParam(AttributeConst.MAN_CONTENT),
-                    Timestamp.valueOf(getRequestParam(AttributeConst.MAN_DEADLINE)),
-                    Timestamp.valueOf(getRequestParam(AttributeConst.MAN_PREDICT)),
+                    deatLine,
+                    predict,
                     getRequestParam(AttributeConst.MAN_HELP));
 
             //日報情報登録
@@ -101,6 +111,24 @@ public class ManagementAction extends ActionBase {
                 redirect(ForwardConst.ACT_MAN, ForwardConst.CMD_INDEX);
             }
         }
+    }
+
+    private Timestamp toTimestamp(String str) {
+        Timestamp timeStamp = null;
+        if (str != null && !str.equals("")) {
+            str = str.replace("T", " ");
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            Date date;
+            try {
+                date = sdf.parse(str);
+                timeStamp = new Timestamp(date.getTime());
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return timeStamp;
     }
     public void show() throws ServletException, IOException {
 
@@ -146,6 +174,12 @@ public class ManagementAction extends ActionBase {
             //idを条件に日報データを取得する
             ManagementView mv = service.findOne(toNumber(getRequestParam(AttributeConst.MAN_ID)));
 
+            // 納期
+            Timestamp  deatLine = toTimestamp(getRequestParam(AttributeConst.MAN_DEADLINE));
+
+            // 予測完了時間
+            Timestamp  predict = toTimestamp(getRequestParam(AttributeConst.MAN_PREDICT));
+
             //入力された日報内容を設定する
             mv.setProgess(getRequestParam(AttributeConst.MAN_PROGESS));
             mv.setProjectnumber(getRequestParam(AttributeConst.MAN_PROJECTNUMBER));
@@ -153,8 +187,8 @@ public class ManagementAction extends ActionBase {
             mv.setQuantity(getRequestParam(AttributeConst.MAN_QUANTITY));
             mv.setRequester( getRequestParam(AttributeConst.MAN_REQUESTER));
             mv.setContent(getRequestParam(AttributeConst.MAN_CONTENT));
-            mv.setDeadline(Timestamp.valueOf(getRequestParam(AttributeConst.MAN_DEADLINE)));
-            mv.setPredict(Timestamp.valueOf(getRequestParam(AttributeConst.MAN_PREDICT)));
+            mv.setDeadline(deatLine);
+            mv.setPredict(predict);
             mv.setHelp(getRequestParam(AttributeConst.MAN_HELP));
 
             //日報データを更新する

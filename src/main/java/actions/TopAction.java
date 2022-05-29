@@ -24,8 +24,12 @@ public class TopAction extends ActionBase {
     @Override
     public void process() throws ServletException, IOException {
 
+        service = new ManagementService();
+
         //メソッドを実行
         invoke();
+
+        service.close();
 
     }
 

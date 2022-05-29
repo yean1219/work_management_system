@@ -13,12 +13,12 @@
     </div>
 </c:if>
 
-<fmt:parseDate value="${management.deadline}" pattern="yyyy/MM/dd HH:mm:ss" var="deadline" type="date" />
+
 <label for="${AttributeConst.MAN_PROGESS.getValue()}">進捗状況</label><br />
 <select name="progess">
-    <option value="1">未</option>
-    <option value="2">進行中</option>
-    <option value="3">完了</option>
+    <option value="未">未</option>
+    <option value="進行中">進行中</option>
+    <option value="完了">完了</option>
 </select>
 <br /><br />
 
@@ -48,25 +48,28 @@
 <br /><br />
 
 
-<fmt:parseDate value="${management.deadline}" pattern="yyyy/MM/dd HH:mm:ss" var="deadline" type="date" />
+<fmt:parseDate value="${management.deadline}" pattern="yyyy-MM-dd HH:mm:ss" var="deadline" type="date" />
+
+ <c:set var="datePattern" value="yyyy-MM-dd'T'HH:mm" />
 <label for="${AttributeConst.MAN_DEADLINE.getValue()}">納期</label><br />
-<input type="date" name="${AttributeConst.MAN_DEADLINE.getValue()}" value="<fmt:formatDate value='${deadline}' pattern='yyyy/MM/dd HH:mm:ss' />" />
+<input type="datetime-local" name="${AttributeConst.MAN_DEADLINE.getValue()}" value="<fmt:formatDate value='${deadline}' pattern='${datePattern}' />" />
 <br /><br />
 
-<fmt:parseDate value="${management.predict}" pattern="yyyy/MM/dd HH:mm:ss" var="predict" type="date" />
+<fmt:parseDate value="${management.predict}" pattern="yyyy-MM-dd HH:mm:ss" var="predict" type="date" />
+
 <label for="${AttributeConst.MAN_PREDICT.getValue()}">予測完了時間</label><br />
-<input type="date" name="${AttributeConst.MAN_PREDICT.getValue()}" value="<fmt:formatDate value='${reportDay}' pattern='yyyy/MM/dd HH:mm:ss' />" />
+<input type="datetime-local" name="${AttributeConst.MAN_PREDICT.getValue()}" value="<fmt:formatDate value='${predict}' pattern='${datePattern}' />" />
 <br /><br />
 
 <label for="${AttributeConst.MAN_HELP.getValue()}">ヘルプ</label><br />
 <div>
-      <input type="radio" id="need" name="drone" value="need"
+      <input type="radio" id="need" name="help" value="要"
              checked>
       <label for="need">要</label>
     </div>
 
     <div>
-      <input type="radio" id="not_need" name="drone" value="not_need">
+      <input type="radio" id="not_need" name="help" value="不要">
       <label for="not_need">不要</label>
     </div>
 <br /><br />

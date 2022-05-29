@@ -44,13 +44,13 @@
                 </tr>
                 <tr>
                     <th>納期</th>
-                    <fmt:parseDate value="${management.deadline}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="deadline" type="date" />
-                    <td><fmt:formatDate value="${deadline}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    <fmt:parseDate value="${management.deadline}" pattern="yyyy-MM-dd HH:mm:ss" var="deadline" type="date" />
+                    <td><fmt:formatDate value="${deadline}" pattern="yyyy-MM-dd HH:mm" /></td>
                 </tr>
                 <tr>
                     <th>予測完了時間</th>
-                    <fmt:parseDate value="${management.predict}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="predict" type="date" />
-                    <td><fmt:formatDate value="${predict}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    <fmt:parseDate value="${management.predict}" pattern="yyyy-MM-dd HH:mm:ss" var="predict" type="date" />
+                    <td><fmt:formatDate value="${predict}" pattern="yyyy-MM-dd HH:mm" /></td>
                 </tr>
                 <tr>
                     <th>ヘルプ</th>
