@@ -73,7 +73,7 @@ public class Management {
     private String client;
 
     @JoinColumn(name = JpaConst.MAN_COL_QUA, nullable = false)
-    private Integer quantity;
+    private String quantity;
 
     @JoinColumn(name = JpaConst.MAN_COL_REQ, nullable = false)
     private String reuqester;
@@ -89,7 +89,7 @@ public class Management {
     private Timestamp predict;
 
     @Column(name = JpaConst.MAN_COL_HELP, nullable = false)
-    private Boolean help;
+    private String help;
 
     /**
      * 日報のタイトル

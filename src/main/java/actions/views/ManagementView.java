@@ -22,7 +22,7 @@ public class ManagementView {
 
     private String client;
 
-    private Integer quantity;
+    private String quantity;
 
     private String requester;
 
@@ -32,6 +32,6 @@ public class ManagementView {
 
     private Timestamp predict;
 
-    private Boolean help;
+    private String help;
 
 }

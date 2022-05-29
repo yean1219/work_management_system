@@ -170,3 +170,9 @@ table#management_list .management_help {
 table#management_list .report_action {
     width: 20%;
 }
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
+h3 {
+    font-size: larger;
+}
