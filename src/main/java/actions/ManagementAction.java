@@ -42,5 +42,16 @@ public class ManagementAction extends ActionBase {
         }
         forward(ForwardConst.FW_MAN_INDEX);
     }
+    public void entryNew() throws ServletException, IOException {
+
+        putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+
+        ManagementView mv = new ManagementView();
+        putRequestScope(AttributeConst.MANAGEMENT, mv); //日付のみ設定済みの作業インスタンス
+
+        //新規登録画面を表示
+        forward(ForwardConst.FW_MAN_NEW);
+
+    }
 
 }
