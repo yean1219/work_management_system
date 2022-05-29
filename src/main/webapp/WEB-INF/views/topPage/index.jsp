@@ -36,21 +36,21 @@
                     <th class="management_action">操作</th>
                 </tr>
                 <c:forEach var="management" items="${managements}" varStatus="status">
-                    <fmt:parseDate value="${management.deadline}" pattern="yyyy/MM/dd HH:mm:ss" var="deadline" type="date" />
-                    <fmt:parseDate value="${management.predict}" pattern="yyyy/MM/dd HH:mm:ss" var="predict" type="date" />
+                    <fmt:parseDate value="${management.deadline}" pattern="yyyy-MM-dd HH:mm:ss" var="deadline" type="date" />
+                    <fmt:parseDate value="${management.predict}" pattern="yyyy-MM-dd HH:mm:ss" var="predict" type="date" />
 
                     <tr class="row${status.count % 2}">
                         <td class="management_progess"><c:out value="${management.progess}" /></td>
-                        <td class="management_manager"><c:out value="${management.manager}" /></td>
+                        <td class="management_manager"><c:out value="${management.employee.name}" /></td>
                         <td class="management_projectnumber">${management.projectnumber}</td>
                         <td class="management_client">${management.client}</td>
                         <td class="management_requester">${management.requester}</td>
                         <td class="management_quantity">${management.quantity}</td>
                         <td class="management_content">${management.content}</td>
-                        <td class="management_deadline"><fmt:formatDate value='${deadline}' pattern='yyyy/MM/dd HH:mm:ss' /></td>
-                        <td class="management_predict"><fmt:formatDate value='${predict}' pattern='yyyy/MM/dd HH:mm:ss' /></td>
+                        <td class="management_deadline"><fmt:formatDate value='${deadline}' pattern='yyyy/MM/dd HH:mm' /></td>
+                        <td class="management_predict"><fmt:formatDate value='${predict}' pattern='yyyy/MM/dd HH:mm' /></td>
                         <td class="management_help">${management.help}</td>
-                        <td class="report_action"><a href="<c:url value='?action=${actMan}&command=${commShow}&id=${management.id}' />">詳細を見る</a></td>
+                        <td class="management_action"><a href="<c:url value='?action=${actMan}&command=${commShow}&id=${management.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

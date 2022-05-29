@@ -76,9 +76,9 @@ public interface JpaConst {
     String Q_MAN_COUNT_DEF = "SELECT COUNT(m) FROM Management AS m";
     //指定した従業員が作成した日報を全件idの降順で取得する
     String Q_MAN_GET_ALL_MINE = ENTITY_MAN + ".getAllMine";
-    String Q_MAN_GET_ALL_MINE_DEF = "SELECT m FROM Management AS m WHERE m.progess in('未', '進行中') m.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY m.id DESC";
+    String Q_MAN_GET_ALL_MINE_DEF = "SELECT m FROM Management AS m WHERE m.progess in('未', '進行中')AND m.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY m.id DESC";
     //指定した従業員が作成した日報の件数を取得する
     String Q_MAN_COUNT_ALL_MINE = ENTITY_MAN + ".countAllMine";
-    String Q_MAN_COUNT_ALL_MINE_DEF = "SELECT COUNT(m) FROM Management AS m WHERE m.progess in('未', '進行中') m.employee = :" + JPQL_PARM_EMPLOYEE;
+    String Q_MAN_COUNT_ALL_MINE_DEF = "SELECT COUNT(m) FROM Management AS m WHERE m.progess in('未', '進行中') AND m.employee = :" + JPQL_PARM_EMPLOYEE;
 
 }
