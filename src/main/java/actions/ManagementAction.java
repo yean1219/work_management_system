@@ -15,19 +15,25 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.EmployeeService;
 import services.ManagementService;
 
 public class ManagementAction extends ActionBase {
 
     private ManagementService service;
 
+    private EmployeeService empService;
+
     @Override
     public void process() throws ServletException, IOException {
         // TODO 自動生成されたメソッド・スタブ
         service = new ManagementService();
+        empService = new EmployeeService();
 
         invoke();
         service.close();
+
+        empService.close();
     }
 
     public void index() throws ServletException,IOException {
@@ -55,6 +61,8 @@ public class ManagementAction extends ActionBase {
         ManagementView mv = new ManagementView();
         putRequestScope(AttributeConst.MANAGEMENT, mv); //日付のみ設定済みの作業インスタンス
 
+        List<EmployeeView> employees = empService.getAll();
+        putRequestScope(AttributeConst.EMPLOYEES, employees);
         //新規登録画面を表示
         forward(ForwardConst.FW_MAN_NEW);
 
@@ -64,8 +72,8 @@ public class ManagementAction extends ActionBase {
         //CSRF対策 tokenのチェック
         if (checkToken()) {
 
-            //セッションからログイン中の従業員情報を取得
-            EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+            // 従業員IDから従業員情報を取得
+            EmployeeView  ev = empService.findOne(toNumber(getRequestParam(AttributeConst.EMPLOYEE)));
 
             // 納期
             Timestamp  deatLine = toTimestamp(getRequestParam(AttributeConst.MAN_DEADLINE));
@@ -149,6 +157,9 @@ public class ManagementAction extends ActionBase {
     }
     public void edit() throws ServletException, IOException {
 
+        List<EmployeeView> employees = empService.getAll();
+        putRequestScope(AttributeConst.EMPLOYEES, employees);
+
         //idを条件に日報データを取得する
         ManagementView mv = service.findOne(toNumber(getRequestParam(AttributeConst.MAN_ID)));
 
@@ -174,6 +185,9 @@ public class ManagementAction extends ActionBase {
             //idを条件に日報データを取得する
             ManagementView mv = service.findOne(toNumber(getRequestParam(AttributeConst.MAN_ID)));
 
+            // 従業員IDから従業員情報を取得
+            EmployeeView  ev = empService.findOne(toNumber(getRequestParam(AttributeConst.EMPLOYEE)));
+
             // 納期
             Timestamp  deatLine = toTimestamp(getRequestParam(AttributeConst.MAN_DEADLINE));
 
@@ -182,6 +196,7 @@ public class ManagementAction extends ActionBase {
 
             //入力された日報内容を設定する
             mv.setProgess(getRequestParam(AttributeConst.MAN_PROGESS));
+            mv.setEmployee(ev);
             mv.setProjectnumber(getRequestParam(AttributeConst.MAN_PROJECTNUMBER));
             mv.setClient(getRequestParam(AttributeConst.MAN_CLIENT));
             mv.setQuantity(getRequestParam(AttributeConst.MAN_QUANTITY));

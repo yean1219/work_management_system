@@ -23,7 +23,13 @@
 <br /><br />
 
 <label for="name">担当者</label><br />
-<c:out value="${sessionScope.login_employee.name}" />
+<select name="${AttributeConst.EMPLOYEE.getValue()}">
+    <c:forEach var="employee" items="${employees}" varStatus="status">
+        <option value= "${employee.id }" <c:if test="${employee.id == management.employee.id}">selected</c:if>>
+            <c:out value="${employee.name}"/>
+        </option>
+    </c:forEach>
+</select>
 <br /><br />
 
 <label for="${AttributeConst.MAN_PROJECTNUMBER.getValue()}">プロジェクト番号</label><br />
